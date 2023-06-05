@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:ploffe_kebab/src/core/constants/app_keys.dart';
-import 'package:ploffe_kebab/src/core/utils/base_functions.dart';
+import 'package:ploff_final/src/core/constants/app_keys.dart';
+import 'package:ploff_final/src/core/utils/base_functions.dart';
 
 final class LocalSource {
   final Box<dynamic> box;

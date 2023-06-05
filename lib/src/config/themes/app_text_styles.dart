@@ -25,6 +25,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle bodyTitle2;
   final TextStyle bodyTitle3;
   final TextStyle bodyLargeTitle;
+  final TextStyle text2;
+  final TextStyle features;
+  final TextStyle list_text;
+  final TextStyle adress;
+  final TextStyle appTitle;
 
   const ThemeTextStyles({
     required this.appBarTitle,
@@ -51,17 +56,27 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.bodyTitle2,
     required this.bodyTitle3,
     required this.bodyLargeTitle,
+    required this.text2,
+    required this.features,
+    required this.list_text,
+    required this.adress,
+    required this.appTitle,
   });
 
   static const ThemeTextStyles light = ThemeTextStyles(
+    appTitle: TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+    ),
     appBarTitle: TextStyle(
       color: Colors.black,
       fontSize: 20,
       fontWeight: FontWeight.w600,
     ),
     buttonStyle: TextStyle(
-      color: Colors.white,
-      fontSize: 17,
+      color: Colors.black,
+      fontSize: 15,
       fontWeight: FontWeight.w600,
     ),
     regularBody: TextStyle(
@@ -157,7 +172,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     bodySubheadline: TextStyle(
       color: Colors.black,
       fontSize: 15,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
     ),
     bodyTitle1: TextStyle(
       color: Colors.black,
@@ -170,12 +185,36 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontWeight: FontWeight.w400,
     ),
     bodyTitle3: TextStyle(
-      color: Colors.black,
+      color: Color(0xff2B2A28),
       fontSize: 22,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
     ),
+    text2: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
+    ),
+    features: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w400,
+      color: Color(0xff141414),
+    ),
+    list_text: TextStyle(
+      fontSize: 13,
+      fontWeight: FontWeight.w400,
+      color: Color(0xff858585),
+    ),
+    adress : TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w400,
+      color: Color(0xff858585),),
   );
   static const ThemeTextStyles dark = ThemeTextStyles(
+    appTitle: TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+    ),
     appBarTitle: TextStyle(
       color: Colors.black,
       fontSize: 20,
@@ -296,6 +335,19 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontSize: 22,
       fontWeight: FontWeight.w400,
     ),
+    text2: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w600,
+      color: Colors.white,
+    ),
+    features: TextStyle(
+        fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white),
+    list_text: TextStyle(
+        fontSize: 13, fontWeight: FontWeight.w400, color: Colors.white60),
+    adress : TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w400,
+      color: Colors.white70,),
   );
 
   @override
@@ -324,6 +376,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? bodyTitle1,
     TextStyle? bodyTitle2,
     TextStyle? bodyTitle3,
+    TextStyle? text2,
+    TextStyle? features,
+    TextStyle? adress,
   }) {
     return ThemeTextStyles(
       appBarTitle: appBarTitle ?? this.appBarTitle,
@@ -350,6 +405,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       bodyTitle1: bodyTitle1 ?? this.bodyTitle1,
       bodyTitle2: bodyTitle2 ?? this.bodyTitle2,
       bodyTitle3: bodyTitle3 ?? this.bodyTitle3,
+      text2: text2 ?? this.text2,
+      features: features ?? this.features,
+      list_text: features ?? this.list_text,
+      adress: features ?? this.adress,
+      appTitle: appTitle ?? this.appTitle,
     );
   }
 
@@ -360,6 +420,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       return this;
     }
     return ThemeTextStyles(
+      appTitle: TextStyle.lerp(appTitle, other.appTitle,t)!,
       appBarTitle: TextStyle.lerp(appBarTitle, other.appBarTitle, t)!,
       buttonStyle: TextStyle.lerp(buttonStyle, other.buttonStyle, t)!,
       regularBody: TextStyle.lerp(regularBody, other.regularBody, t)!,
@@ -391,6 +452,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       bodyTitle1: TextStyle.lerp(bodyTitle1, other.bodyTitle1, t)!,
       bodyTitle2: TextStyle.lerp(bodyTitle2, other.bodyTitle2, t)!,
       bodyTitle3: TextStyle.lerp(bodyTitle3, other.bodyTitle3, t)!,
+      text2: TextStyle.lerp(text2, other.text2, t)!,
+      features: TextStyle.lerp(features, other.features, t)!,
+      list_text: TextStyle.lerp(list_text, other.list_text, t)!,
+      adress: TextStyle.lerp(adress, other.adress, t)!,
     );
   }
 }

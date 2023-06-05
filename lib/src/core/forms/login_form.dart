@@ -1,6 +1,6 @@
 import 'package:formz/formz.dart';
-import 'package:ploffe_kebab/src/core/inputs/email_input.dart';
-import 'package:ploffe_kebab/src/core/inputs/password_input.dart';
+import 'package:ploff_final/src/core/inputs/email_input.dart';
+import 'package:ploff_final/src/core/inputs/password_input.dart';
 
 class LoginForm with FormzMixin {
   final EmailInput emailInput;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
-import 'package:ploffe_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:pinput/pinput.dart';
-import 'package:ploffe_kebab/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/presentation/bloc/auth/auth_bloc.dart';
+import 'package:ploff_final/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
 
 class ConfirmCodePage extends StatefulWidget {
   final AuthSuccessState state;
@@ -22,15 +22,11 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
   late PinTheme focusedPinTheme;
   late PinTheme submittedPinTheme;
   late final TextEditingController controller;
-  @override
-  void initState() {
-    super.initState();
-    controller = TextEditingController();
 
-  }
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    controller = TextEditingController();
     defaultPinTheme = PinTheme(
       width: 56,
       height: 56,

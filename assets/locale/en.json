@@ -45,6 +45,12 @@
   "empty_note_subtitle": "Add a passenger to no longer fill in data manually",
   "delete_passport_title": "Are you sure that you want to delete this data?",
   "delete_passport_subtitle": "if necessary, you will not be able to restore it",
-  "select_country": "Choose country"
+  "select_country": "Choose country",
+  "home": "Home",
+  "basket": "Basket",
+  "Settings": "Settings",
+  "Orders":"Orders",
+  "Profile": "Profile",
+  "Massiv Beshagach 19/30": "Massiv Beshagach 19/30"
 
 }

@@ -58,4 +58,6 @@ class AppIcons {
   static const IconData user = IconData(0xe928, fontFamily: _fontFamily);
   static const IconData video = IconData(0xe929, fontFamily: _fontFamily);
   static const IconData wallet = IconData(0xe92a, fontFamily: _fontFamily);
+  static const IconData home = IconData(0xe319, fontFamily: _fontFamily);
+
 }

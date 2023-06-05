@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+import 'discount_widget.dart';
+
+class RecommendationsWidget extends StatelessWidget {
+  const RecommendationsWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, bottom: 16),
+        child: Container(
+          width: double.infinity,
+          height: 300,
+          decoration: const BoxDecoration(
+            color: Colors.white70,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 11),
+                  child: Text(
+                    'Наши рекомендации',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                ContainerWidget(
+                    text: '35 000 сум', image: 'assets/png/ploff7.png'),
+                ContainerWidget(
+                    text: '38 000 сум', image: 'assets/png/ploff8.png'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

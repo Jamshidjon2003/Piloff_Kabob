@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:ploffe_kebab/src/config/router/app_routes.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
-
-import 'widgets/logout_dialog.dart';
-import 'widgets/profile_item_widget.dart';
+import 'package:ploff_final/src/config/router/app_routes.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -12,111 +8,150 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.translate('profile'))),
-      body: CustomScrollView(
-        slivers: [
-          const SliverGap(16),
-          SliverPadding(
-            padding: AppUtils.kPaddingHorizontal16,
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.address_book,
-                      size: 20,
+      appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title:  Text(
+          'Профиль ',
+          style: ThemeTextStyles.light.appBarTitle,
+        ),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Container(
+              width: double.infinity,
+              height: 87,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 8),
+                          child: Text(
+                            'Усмонов Акбар',
+                            style: ThemeTextStyles.light.appBarTitle,
+                          ),
+                        ),
+                        const Text(
+                          '+998 12 433 87 32',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff5F5F5F)),
+                        ),
+                      ],
                     ),
-                    text: context.translate('notebook'),
-                    isTop: true,
-                    onTap: () {
-                      // Navigator.pushNamed(context, Routes.notes);
-                    },
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.wallet,
-                      size: 20,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.edit_profile);
+                      },
+                      child: Image.asset('assets/png/Edit.png'),
                     ),
-                    text: context.translate('my_cards'),
-                    isBottom: true,
-                    onTap: () {
-                      // Navigator.pushNamed(context, Routes.myCards);
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-          const SliverGap(12),
-          SliverPadding(
-            padding: AppUtils.kPaddingHorizontal16,
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.info,
-                      size: 20,
-                    ),
-                    text: context.translate('about_us'),
-                    isTop: true,
-                    onTap: () {},
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.favorite_list,
-                      size: 20,
-                    ),
-                    text: context.translate('blog'),
-                    onTap: () {},
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.agreement,
-                      size: 20,
-                    ),
-                    text: context.translate('cooperation'),
-                    onTap: () {},
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      Icons.settings,
-                      size: 20,
-                    ),
-                    text: context.translate('settings'),
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Container(
+              width: double.infinity,
+              height: 259,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12),
+                ),
+              ),
+              child: Column(
+                children: [
+                  ProfileItem(
+                    icon: 'assets/png/localation.png',
+                    text: 'Филиалы',
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        Routes.settings,
-                      );
+                      Navigator.pushNamed(context, Routes.filial);
                     },
                   ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.logout,
-                      size: 20,
-                    ),
-                    isBottom: true,
-                    text: context.translate('logout'),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) {
-                          return const LogOutDialog();
-                        },
-                      );
-                    },
-                  ),
+                  ProfileItem(
+                      icon: 'assets/png/setting.png',
+                      text: 'Настройки',
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.settings);
+                      }),
+                  ProfileItem(
+                      icon: 'assets/png/location pin.png',
+                      text: 'Мои адресы',
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.my_adress);
+                      }),
+                  ProfileItem(
+                      icon: 'assets/png/about.png',
+                      text: 'О сервисе',
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.about_service);
+                      }),
                 ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ProfileItem extends StatelessWidget {
+  ProfileItem({
+    Key? key,
+    required this.icon,
+    required this.text,
+    required this.onTap,
+  }) : super(key: key);
+  String icon;
+  String text;
+  final Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Ink(
+      width: double.infinity,
+      height: 64,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: ListTile(
+        onTap: onTap,
+        contentPadding: const EdgeInsets.only(left: 12, top: 4),
+        leading: Image.asset(
+          icon,
+          width: 40,
+          height: 40,
+        ),
+        title: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        trailing: const Padding(
+          padding: EdgeInsets.only(right: 16),
+          child: Icon(Icons.chevron_right_outlined),
+        ),
       ),
     );
   }

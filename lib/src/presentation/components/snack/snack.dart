@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ploffe_kebab/src/config/themes/themes.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/core/extension/extension.dart';
 
 class Snack {
   static void show(BuildContext context, String message) {

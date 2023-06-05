@@ -45,5 +45,12 @@
   "empty_note_subtitle": "Ma'lumotlarni endi qo'lda to'ldirmaslik uchun yo'lovchi qo'shing",
   "delete_passport_title": "Siz ushbu ma'lumotlarni o'chirib tashlashingizga ishonchingiz komilmi?",
   "delete_passport_subtitle": "Agar kerak bo'lib qolganda uni qayta tiklay olmaysiz",
-  "select_country": "Mamlakatni tanlang"
+  "select_country": "Mamlakatni tanlang",
+  "home": "Uy",
+  "basket": "Savat",
+  "Settings": "Sozlamalar",
+  "Orders":"Buyurtmalar",
+  "Profile": "Profil",
+  "Massiv Beshagach 19/30": "Massiv Beshyagach 19/30"
+
 }

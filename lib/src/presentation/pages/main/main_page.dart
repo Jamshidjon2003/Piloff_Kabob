@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ploffe_kebab/src/config/router/app_routes.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
-import 'package:ploffe_kebab/src/core/constants/constants.dart';
-import 'package:ploffe_kebab/src/presentation/bloc/main/main_bloc.dart';
-import 'package:ploffe_kebab/src/presentation/pages/main/profile/profile_page.dart';
-import 'package:ploffe_kebab/src/presentation/pages/main/search/search_page.dart';
+import 'package:ploff_final/src/config/router/app_routes.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/core/extension/extension.dart';
+import 'package:ploff_final/src/core/constants/constants.dart';
+import 'package:ploff_final/src/presentation/bloc/main/main_bloc.dart';
+import 'package:ploff_final/src/presentation/pages/main/home/home_page.dart';
+import 'package:ploff_final/src/presentation/pages/main/my_orders/my_orders_page.dart';
+import 'package:ploff_final/src/presentation/pages/main/profile/profile_page.dart';
 
-import 'favorites/bookmark_page.dart';
-import 'orders/orders_page.dart';
+import 'basket/basket_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -23,9 +24,9 @@ class MainPage extends StatelessWidget {
           body: IndexedStack(
             index: state.bottomMenu.index,
             children: const [
-              SearchPage(),
-              OrdersPage(),
-              FavoritesPage(),
+              HomePage(),
+              BasketPage(),
+              MyOrdersPage(),
               ProfilePage()
             ],
           ),
@@ -33,7 +34,9 @@ class MainPage extends StatelessWidget {
             key: Constants.bottomNavigatorKey,
             onTap: (i) {
               if (i == 3 && !localSource.hasProfile) {
-                Navigator.pushNamed(context, Routes.auth);
+                // Navigator.pushNamed(context, Routes.auth);
+                 Navigator.pushNamed(context, Routes.profile);
+
                 return;
               }
               context
@@ -43,19 +46,19 @@ class MainPage extends StatelessWidget {
             currentIndex: state.bottomMenu.index,
             items: [
               _navigationBarItem(
-                label: context.translate('search'),
-                icon: AppIcons.search,
-                activeIcon: AppIcons.search,
+                label: context.translate('home'),
+                icon: Icons.home_filled,
+                activeIcon: Icons.home_filled,
+              ),
+              _navigationBarItem(
+                label: context.translate('basket'),
+                icon: Icons.shopping_cart,
+                activeIcon: Icons.shopping_cart,
               ),
               _navigationBarItem(
                 label: context.translate('orders'),
-                icon: AppIcons.history,
-                activeIcon: AppIcons.history,
-              ),
-              _navigationBarItem(
-                label: context.translate('favorites'),
-                icon: AppIcons.favorite,
-                activeIcon: AppIcons.favorite_1,
+                icon: Icons.shopping_bag,
+                activeIcon: Icons.shopping_bag,
               ),
               _navigationBarItem(
                 label: context.translate('profile'),

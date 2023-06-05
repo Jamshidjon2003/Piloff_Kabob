@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
+import 'package:ploff_final/src/core/extension/extension.dart';
 
 class InternetConnectionPage extends StatefulWidget {
   const InternetConnectionPage({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ploffe_kebab/src/data/models/auth/send_message_request.dart';
-import 'package:ploffe_kebab/src/domain/repositories/auth/auth_repository.dart';
+import 'package:ploff_final/src/data/models/auth/send_message_request.dart';
+import 'package:ploff_final/src/domain/repositories/auth/auth_repository.dart';
 
 part 'auth_state.dart';
 

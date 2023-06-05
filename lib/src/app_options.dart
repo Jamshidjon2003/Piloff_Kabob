@@ -5,8 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
-
-import 'core/constants/constants.dart';
+import 'package:ploff_final/src/core/constants/constants.dart';
 
 enum CustomTextDirection {
   localeBased,

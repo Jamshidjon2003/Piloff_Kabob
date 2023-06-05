@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ploffe_kebab/src/core/mixin/cache_mixin.dart';
-import 'package:ploffe_kebab/src/data/models/auth/verify_request.dart';
-import 'package:ploffe_kebab/src/domain/repositories/auth/auth_repository.dart';
+import 'package:ploff_final/src/core/mixin/cache_mixin.dart';
+import 'package:ploff_final/src/data/models/auth/verify_request.dart';
+import 'package:ploff_final/src/domain/repositories/auth/auth_repository.dart';
 
 part 'confirm_code_state.dart';
 

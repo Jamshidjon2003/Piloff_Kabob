@@ -55,20 +55,32 @@ final ThemeData lightTheme = appTheme.copyWith(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
+      minimumSize: const MaterialStatePropertyAll(
+        Size(double.infinity, 32),
+      ),
+      maximumSize: const MaterialStatePropertyAll(
+        Size(double.infinity, 48),
+      ),
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
-          return Colors.white;
+           return Colors.black;
         },
       ),
       backgroundColor: MaterialStateProperty.resolveWith(
         (states) {
           if (states.contains(MaterialState.disabled)) {
-            return Colors.grey;
+            return Colors.black12;
           }
           return ThemeColors.light.primary;
         },
       ),
-      textStyle: MaterialStatePropertyAll(ThemeTextStyles.light.buttonStyle),
+      textStyle: const MaterialStatePropertyAll(
+        TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+          color: Colors.green,
+        ),
+      ),
       elevation: const MaterialStatePropertyAll(0),
       shape: const MaterialStatePropertyAll(
         RoundedRectangleBorder(
@@ -78,7 +90,17 @@ final ThemeData lightTheme = appTheme.copyWith(
       fixedSize: const MaterialStatePropertyAll(Size(double.infinity, 48)),
     ),
   ),
-  inputDecorationTheme: const InputDecorationTheme(),
+  inputDecorationTheme: const InputDecorationTheme(
+    filled: true,
+    fillColor: Color(0xffF5F5F5),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(width: 0.0),
+      borderRadius: AppUtils.kBorderRadius8,
+    ),
+    hintStyle: TextStyle(
+        fontSize: 15, fontWeight: FontWeight.w400, color: Color(0xff858585)),
+    contentPadding: EdgeInsets.all(5),
+  ),
   bottomSheetTheme: const BottomSheetThemeData(
     elevation: 0,
     showDragHandle: true,
@@ -98,8 +120,11 @@ final ThemeData lightTheme = appTheme.copyWith(
     selectedLabelStyle: TextStyle(fontSize: 12),
     unselectedLabelStyle: TextStyle(fontSize: 12),
     unselectedItemColor: Color(0xffA0A9B6),
-    selectedItemColor: Color(0xff0FB8D3),
+    selectedItemColor: Color(0xffFFCC00),
     elevation: 2,
+  ),
+  radioTheme: const RadioThemeData(
+    fillColor: MaterialStatePropertyAll(Colors.black),
   ),
   tabBarTheme: const TabBarTheme(
     labelColor: Color(0xff111126),
@@ -248,7 +273,7 @@ final ThemeData darkTheme = appTheme.copyWith(
     centerTitle: true,
     systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      // systemNavigationBarColor: ThemeColors.primary,
+// systemNavigationBarColor: ThemeColors.primary,
 
       /// android
       statusBarIconBrightness: Brightness.light,
@@ -258,7 +283,7 @@ final ThemeData darkTheme = appTheme.copyWith(
     ),
     iconTheme: const IconThemeData(color: Colors.white),
     titleTextStyle: ThemeTextStyles.dark.appBarTitle,
-    // backgroundColor: ThemeColors.cardBackgroundDark,
+// backgroundColor: ThemeColors.cardBackgroundDark,
   ),
   textTheme: const TextTheme(
     bodySmall: TextStyle(

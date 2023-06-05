@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ploffe_kebab/src/config/router/app_routes.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
-import 'package:ploffe_kebab/src/presentation/bloc/auth/auth_bloc.dart';
-import 'package:ploffe_kebab/src/presentation/components/custom_texfield/masked_text_input_formatter.dart';
-import 'package:ploffe_kebab/src/presentation/components/loading_widgets/modal_progress_hud.dart';
+import 'package:ploff_final/src/config/router/app_routes.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/core/extension/extension.dart';
+import 'package:ploff_final/src/presentation/bloc/auth/auth_bloc.dart';
+import 'package:ploff_final/src/presentation/components/custom_texfield/masked_text_input_formatter.dart';
+import 'package:ploff_final/src/presentation/components/loading_widgets/modal_progress_hud.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);

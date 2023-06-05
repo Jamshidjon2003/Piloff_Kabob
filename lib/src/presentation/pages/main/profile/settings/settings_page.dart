@@ -1,80 +1,119 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ploffe_kebab/src/core/extension/extension.dart';
-import 'package:ploffe_kebab/src/injector_container.dart';
-import 'package:ploffe_kebab/src/data/source/local_source.dart';
-import 'package:ploffe_kebab/src/app_options.dart';
-import 'package:ploffe_kebab/src/presentation/components/bottom_sheet/custom_bottom_sheet.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/core/l10n/app_localizations.dart';
+import 'package:ploff_final/src/presentation/pages/main/profile/settings/widget/language_widget.dart';
 
-import 'widgets/language_bottom_widget.dart';
-import 'widgets/theme_bottom_widget.dart';
-
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final options = AppOptions.of(context);
+  State<SettingsPage> createState() => _SettingsPageState();
+}
 
+class _SettingsPageState extends State<SettingsPage> {
+  bool switchValue = true;
+  bool switchValue1 = true;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: ClipRRect(
-          borderRadius: AppUtils.kBorderRadius16,
-          child: Material(
-            color: Theme.of(context).cardColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: AppUtils.kBorderRadius16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  onTap: () {
-                    customModalBottomSheet(
-                      context: context,
-                      builder: (_, controller) {
-                        return LanguageBottomWidget(
-                          onChanged: (lang) async {
-                            AppOptions.update(
-                              context,
-                              options.copyWith(locale: Locale(lang)),
-                            );
-                            Navigator.pop(context);
-                            await sl<LocalSource>().setLocale(lang);
-                          },
-                        );
-                      },
-                    );
-                  },
-                  title: const Text('Language'),
+      appBar: AppBar(
+        centerTitle: true,
+        title:  Text(
+          "Настройки",
+          style: ThemeTextStyles.light.regularHeadline,
+        ),
+      ),
+      body: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return const LanguagesWidget();
+                  });
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Container(
+                width: double.infinity,
+                height: 64,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Image.asset("assets/png/world.png"),
+                        ),
+                         Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 16),
+                          child: Text(
+                          'Язык',
+                            style: ThemeTextStyles.light.bodySubheadline,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 16),
+                      child: Icon(Icons.chevron_right_outlined,
+                          color: Color(0xff818C99)),
+                    ),
+                  ],
                 ),
-                AppUtils.kDivider,
-                ListTile(
-                  onTap: () {
-                    customModalBottomSheet(
-                      context: context,
-                      builder: (_, __) {
-                        return ThemeBottomWidget(
-                          onChanged: (mode) async {
-                            AppOptions.update(
-                              context,
-                              options.copyWith(themeMode: mode),
-                            );
-                            Navigator.pop(context);
-                            await sl<LocalSource>().setThemeMode(mode);
-                          },
-                        );
+              ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 64,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(12))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Image.asset("assets/png/notification.png"),
+                    ),
+                     Padding(
+                      padding: const EdgeInsets.only(top: 16, bottom: 16),
+                      child: Text(
+                        "Уведомлений",
+                        style: ThemeTextStyles.light.bodySubheadline,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: Transform.scale(
+                    scale: 0.8,
+                    child: CupertinoSwitch(
+                      value: switchValue1,
+                      activeColor: ThemeColors.light.primary,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          switchValue1 = value ?? false;
+                        });
                       },
-                    );
-                  },
-                  title: const Text('Theme'),
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
