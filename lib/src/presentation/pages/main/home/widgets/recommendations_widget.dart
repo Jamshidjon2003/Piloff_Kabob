@@ -20,13 +20,13 @@ class RecommendationsWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(top: 11),
+                  padding: EdgeInsets.only(top: 16),
                   child: Text(
                     'Наши рекомендации',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),

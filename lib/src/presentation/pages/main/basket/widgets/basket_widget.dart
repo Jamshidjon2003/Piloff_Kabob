@@ -25,7 +25,7 @@ class BasketWidget extends StatelessWidget {
             ),
             SizedBox(
               width: 375,
-              height: 183,
+              height: 182,
               child: Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: ListView(

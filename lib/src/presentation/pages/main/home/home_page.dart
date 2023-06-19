@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/presentation/bloc/banner/home_bloc.dart';
 
 import 'widgets/discount_widget.dart';
 import 'widgets/popular_widget.dart';
@@ -16,8 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with TickerProviderStateMixin, HomeMixin {
-
-
+  int index = 0;
 
   @override
   void initState() {
@@ -28,6 +30,7 @@ class _HomePageState extends State<HomePage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    context.read<HomeBloc>().add(const GetBanners());
   }
 
   @override
@@ -47,9 +50,9 @@ class _HomePageState extends State<HomePage>
               Text(
                 "Массив Бешягач 19/30",
                 style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                    ),
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                ),
               ),
               Icon(
                 Icons.keyboard_arrow_down,
@@ -63,14 +66,17 @@ class _HomePageState extends State<HomePage>
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: Column(
                 children: [
-                    const TextField(
-                      decoration: InputDecoration(contentPadding: EdgeInsets.all(2),
-                        hintStyle: TextStyle(color: Color(0xff9AA6AC)),
-                        hintText: 'Поиск по всей еде',
-                        prefixIcon: Icon(Icons.search, color: Color(0xff9AA6AC), ),
-
+                  const TextField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(2),
+                      hintStyle: TextStyle(color: Color(0xff9AA6AC)),
+                      hintText: 'Поиск по всей еде',
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Color(0xff9AA6AC),
                       ),
                     ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 16),
                     child: SizedBox(
@@ -116,51 +122,93 @@ class _HomePageState extends State<HomePage>
             ),
           ),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: Container(
-                  width: 375,
-                  height: 204,
-                  color: Colors.white,
-                  child: PageView(
-                    scrollDirection: Axis.horizontal,
-                    controller: pageController,
-                    children: [
-                      Center(
-                        child: Image.asset(
-                          "assets/png/rasm.png",
-                          width: 343,
-                          height: 160,
+        body: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+          if (state is BannerState) {
+            final list = state.banners?.banners?.map((e) => e.image).toList();
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 16,
+                      bottom: 6,
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: ThemeColors.light.white,
+                        ),
+                        padding: AppUtils.kPaddingAll16,
+                        height: 172,
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: ClipRRect(
+                                borderRadius: AppUtils.kBorderRadius8,
+                                child: PageView.builder(
+                                  itemCount:
+                                      int.tryParse(state.banners?.count ?? '0'),
+                                  onPageChanged: (i) {
+                                    setState(() {
+                                      index = i;
+                                    });
+                                  },
+                                  itemBuilder: (_, index) {
+                                    return CachedNetworkImage(
+                                      imageUrl: list![index] ?? '',
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 0,
+                              right: 0,
+                              bottom: 10,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 8,
+                                  child: ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (_, index) {
+                                      return AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        height: 8,
+                                        width: 8,
+                                        decoration: BoxDecoration(
+                                          color: index == this.index
+                                              ? ThemeColors.light.white
+                                              : ThemeColors.light.white
+                                                  .withOpacity(0.4),
+                                          shape: BoxShape.circle,
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (_, __) =>
+                                        AppUtils.kBoxWidth4,
+                                    itemCount: list!.length,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Center(
-                        child: Image.asset(
-                          "assets/png/rasm.png",
-                          width: 343,
-                          height: 160,
-                        ),
-                      ),
-                      Center(
-                        child: Image.asset(
-                          "assets/png/rasm.png",
-                          width: 343,
-                          height: 160,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-
-            const DiscountWidget(),
-            const PopularWidget(),
-            const RecommendationsWidget(),
-          ],
-        ),
+                const DiscountWidget(),
+                const PopularWidget(),
+                const RecommendationsWidget(),
+              ],
+            );
+          }
+          return const SizedBox();
+        }),
       ),
     );
   }

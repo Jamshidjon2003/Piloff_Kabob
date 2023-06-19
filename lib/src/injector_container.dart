@@ -12,6 +12,8 @@ import 'package:ploff_final/src/config/router/app_routes.dart';
 import 'package:ploff_final/src/data/source/local_source.dart';
 import 'package:ploff_final/src/domain/network/api_client.dart';
 import 'package:ploff_final/src/domain/repositories/auth/auth_repository.dart';
+import 'package:ploff_final/src/presentation/bloc/banner/home_bloc.dart';
+import 'package:ploff_final/src/presentation/bloc/register/register_bloc.dart';
 
 import 'core/constants/constants.dart';
 import 'core/platform/network_info.dart';
@@ -35,10 +37,8 @@ Future<void> init() async {
         receiveTimeout: const Duration(seconds: 30),
         connectTimeout: const Duration(seconds: 30),
         headers: {
-          'Authorization': 'API-KEY',
-          'X-API-KEY': 'P-qapkgqLxf6v25bwhNzgcIDHwjhFd4mzM',
-          'Resource-Id': Constants.resourceId,
-          'Environment-Id': Constants.environmentId,
+          'Shipper': Constants.shipperId,
+          'Platform': Constants.platform,
         },
       )
       ..interceptors.addAll(
@@ -86,14 +86,16 @@ void mainFuture() {
   /// splash
   sl
     ..registerFactory(SplashBloc.new)
-    ..registerLazySingleton(MainBloc.new);
+    ..registerLazySingleton(MainBloc.new)
+    ..registerLazySingleton(() => HomeBloc(sl()));
 }
 
 void authFeature() {
-  late final ApiClient authClient = ApiClient(sl(), Constants.authUrl);
+  late final ApiClient authClient = ApiClient(sl(), Constants.baseUrl);
   sl
     ..registerFactory<AuthBloc>(() => AuthBloc(sl()))
     ..registerFactory<ConfirmCodeBloc>(() => ConfirmCodeBloc(sl()))
+    ..registerFactory(() => RegisterBloc(sl()))
     ..registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
         apiClient: authClient,

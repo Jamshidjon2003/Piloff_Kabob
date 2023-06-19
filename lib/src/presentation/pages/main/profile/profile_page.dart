@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ploff_final/src/config/router/app_routes.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/data/source/local_source.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+import '../../../../injector_container.dart';
+
+class ProfilePage extends StatefulWidget {
+   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -34,18 +44,16 @@ class ProfilePage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
+                    Column( mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 16, bottom: 8),
-                          child: Text(
-                            'Усмонов Акбар',
-                            style: ThemeTextStyles.light.appBarTitle,
-                          ),
+                          child:
+                            Text(sl<LocalSource>().fullName),
+
                         ),
-                        const Text(
-                          '+998 12 433 87 32',
-                          style: TextStyle(
+                         Text(sl<LocalSource>().phone,
+                          style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                               color: Color(0xff5F5F5F)),
@@ -156,3 +164,4 @@ class ProfileItem extends StatelessWidget {
     );
   }
 }
+

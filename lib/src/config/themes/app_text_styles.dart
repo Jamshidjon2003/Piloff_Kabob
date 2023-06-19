@@ -29,7 +29,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle features;
   final TextStyle list_text;
   final TextStyle adress;
-  final TextStyle appTitle;
 
   const ThemeTextStyles({
     required this.appBarTitle,
@@ -60,15 +59,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.features,
     required this.list_text,
     required this.adress,
-    required this.appTitle,
   });
 
   static const ThemeTextStyles light = ThemeTextStyles(
-    appTitle: TextStyle(
-      color: Colors.black,
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
-    ),
     appBarTitle: TextStyle(
       color: Colors.black,
       fontSize: 20,
@@ -210,11 +203,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       color: Color(0xff858585),),
   );
   static const ThemeTextStyles dark = ThemeTextStyles(
-    appTitle: TextStyle(
-      color: Colors.black,
-      fontSize: 20,
-      fontWeight: FontWeight.w600,
-    ),
     appBarTitle: TextStyle(
       color: Colors.black,
       fontSize: 20,
@@ -409,7 +397,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       features: features ?? this.features,
       list_text: features ?? this.list_text,
       adress: features ?? this.adress,
-      appTitle: appTitle ?? this.appTitle,
     );
   }
 
@@ -420,7 +407,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       return this;
     }
     return ThemeTextStyles(
-      appTitle: TextStyle.lerp(appTitle, other.appTitle,t)!,
       appBarTitle: TextStyle.lerp(appBarTitle, other.appBarTitle, t)!,
       buttonStyle: TextStyle.lerp(buttonStyle, other.buttonStyle, t)!,
       regularBody: TextStyle.lerp(regularBody, other.regularBody, t)!,

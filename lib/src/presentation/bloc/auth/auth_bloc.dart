@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ploff_final/src/data/models/auth/send_message_request.dart';
+import 'package:ploff_final/src/data/models/auth/login_request.dart';
+import 'package:ploff_final/src/data/models/auth/phone_request.dart';
+import 'package:ploff_final/src/domain/network/failure.dart';
 import 'package:ploff_final/src/domain/repositories/auth/auth_repository.dart';
 
 part 'auth_state.dart';
@@ -14,7 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc(this.authRepository) : super(const AuthState()) {
     on<AuthPhoneChangeEvent>(_onChanged);
-    on<AuthCheckMessageEvent>(_onSendMessage);
+    on<PhoneNumberButtonPressedEvent>(_buttonPressedHandler);
   }
 
   void _onChanged(AuthPhoneChangeEvent event, Emitter<AuthState> emit) {
@@ -25,31 +27,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthPhoneState(event.value));
   }
 
-  Future<void> _onSendMessage(
-      AuthCheckMessageEvent event, Emitter<AuthState> emit) async {
+  Future<void> _buttonPressedHandler(
+      PhoneNumberButtonPressedEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
 
-    final result = await authRepository.codeMessage(
-      request: SendMessageRequest(
-        clientType: 'WEB_USER',
-        email: '',
-        googleToken: '',
+    final result = await authRepository.phone(
+      request: PhoneRequest(
         phone: "+998${event.phone.replaceAll(" ", "")}",
-        registerType: 'phone',
       ),
     );
-    result.fold(
+    await result.fold(
       (l) {
-        emit(const AuthState.error());
+        if ((l as ServerFailure).message == 'Not Found') {
+          emit(AuthState.register("+998${event.phone.replaceAll(" ", "")}"));
+        } else {
+          emit(const AuthState.error());
+        }
       },
-      (r) {
-        emit(
-          AuthState.success(
-            r.data?['sms_id'],
-            "+998${event.phone.replaceAll(" ", "")}",
-            r.data?['data'],
-          ),
-        );
+      (r)  async {
+        final loginResult = await authRepository.login(
+            request: LoginRequest(phone: "${r.phone?.replaceAll(" ", "")}"));
+
+        loginResult.fold((l) => emit(const AuthState.error()), (right) {
+          if (right.message!.contains("Code has been sent")) {
+            emit(
+              AuthState.success(r.phone ?? ""),
+            );
+          }
+        });
       },
     );
   }

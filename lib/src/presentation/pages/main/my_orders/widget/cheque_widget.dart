@@ -10,7 +10,7 @@ class ChequeWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16),
       child: Container(
         width: double.infinity,
-        height: 206,
+        height: 201,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(12),

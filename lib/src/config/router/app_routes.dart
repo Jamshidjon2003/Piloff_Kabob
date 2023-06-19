@@ -6,9 +6,12 @@ import 'package:ploff_final/src/data/source/local_source.dart';
 import 'package:ploff_final/src/injector_container.dart';
 import 'package:ploff_final/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:ploff_final/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
+import 'package:ploff_final/src/presentation/bloc/register/register_bloc.dart';
 import 'package:ploff_final/src/presentation/bloc/splash/splash_bloc.dart';
+import 'package:ploff_final/src/presentation/pages/auth/arguments/auth_arguments.dart';
 import 'package:ploff_final/src/presentation/pages/auth/auth_page.dart';
 import 'package:ploff_final/src/presentation/pages/auth/confirm/confirm_code_page.dart';
+import 'package:ploff_final/src/presentation/pages/auth/register_page.dart';
 import 'package:ploff_final/src/presentation/pages/error/error_page.dart';
 import 'package:ploff_final/src/presentation/pages/internet_connection/internet_connection_page.dart';
 import 'package:ploff_final/src/presentation/pages/main/%D1%81heckout/checkout_page.dart';
@@ -69,41 +72,76 @@ final class AppRoutes {
           ),
         );
       case Routes.confirmCode:
-        final AuthSuccessState state = settings.arguments! as AuthSuccessState;
+         AuthArguments? arg = settings.arguments as AuthArguments;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => sl<ConfirmCodeBloc>(),
             child: ConfirmCodePage(
-              state: state,
+              arg: arg
             ),
           ),
         );
       case Routes.product:
-        return MaterialPageRoute(builder: (_)=> const ProductPage(),);
-        case Routes.language:
-        return MaterialPageRoute(builder: (_)=> const LanguagePage(),);
+        return MaterialPageRoute(
+          builder: (_) => const ProductPage(),
+        );
+      case Routes.language:
+        return MaterialPageRoute(
+          builder: (_) => const LanguagePage(),
+        );
       case Routes.checkout:
-        return MaterialPageRoute(builder: (_)=> const CheckoutPage(),);
+        return MaterialPageRoute(
+          builder: (_) => const CheckoutPage(),
+        );
       case Routes.basket_empty:
-        return MaterialPageRoute(builder: (_)=> const BasketEmptyPage(),);
+        return MaterialPageRoute(
+          builder: (_) => const BasketEmptyPage(),
+        );
       case Routes.active_order:
-        return MaterialPageRoute(builder: (_)=> const ActiveOrderPage(),);
+        return MaterialPageRoute(
+          builder: (_) => const ActiveOrderPage(),
+        );
       case Routes.history_order:
-        return MaterialPageRoute(builder: (_)=> const HistoryOrderPage(),);
+        return MaterialPageRoute(
+          builder: (_) => const HistoryOrderPage(),
+        );
       case Routes.profile:
-        return MaterialPageRoute(builder: (_)=> const ProfilePage(),);
+        return MaterialPageRoute(
+          builder: (_) => const ProfilePage(),
+        );
       case Routes.edit_profile:
-        return MaterialPageRoute(builder: (_)=> const EditProfilePage(),);
+        return MaterialPageRoute(
+          builder: (_) => const EditProfilePage(),
+        );
       case Routes.filial:
-        return MaterialPageRoute(builder: (_)=>  FilialPage(),);
+        return MaterialPageRoute(
+          builder: (_) => FilialPage(),
+        );
       case Routes.my_adress:
-        return MaterialPageRoute(builder: (_)=>  const MyAdressPage(),);
+        return MaterialPageRoute(
+          builder: (_) => const MyAdressPage(),
+        );
       case Routes.about_service:
-        return MaterialPageRoute(builder: (_)=>  const AboutServicePage(),);
+        return MaterialPageRoute(
+          builder: (_) => const AboutServicePage(),
+        );
       case Routes.adress:
-        return MaterialPageRoute(builder: (_)=>  const AdressPage(),);
+        return MaterialPageRoute(
+          builder: (_) => const AdressPage(),
+        );
       case Routes.yunusobod_filial:
-        return MaterialPageRoute(builder: (_)=> YunusobodFilialPage(title: "Юнусабад"));
+        return MaterialPageRoute(
+            builder: (_) => YunusobodFilialPage(title: "Юнусабад"));
+      case Routes.register:
+        final String phone =
+            settings.arguments! as String;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => sl<RegisterBloc>(),
+            child: RegisterPage(phone: phone),
+          ),
+        );
+
       default:
         return MaterialPageRoute(builder: (_) => ErrorPage(settings: settings));
     }

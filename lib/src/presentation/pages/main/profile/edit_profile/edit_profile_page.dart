@@ -1,14 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/data/source/local_source.dart';
+import 'package:ploff_final/src/injector_container.dart';
 
 import 'widget/data_widget.dart';
 
-class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+class EditProfilePage extends StatefulWidget {
+   const EditProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  final TextEditingController namecontroller = TextEditingController();
+   final TextEditingController phonecontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    namecontroller.text=sl<LocalSource>().fullName;
+    phonecontroller.text =sl<LocalSource>().phone;
     return Scaffold(
       appBar: AppBar( centerTitle: true,
         title: const Text("Редактировать профиль"),
@@ -35,16 +47,10 @@ class EditProfilePage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: TextFormField(
+                child: TextFormField( controller: namecontroller,
                   style: ThemeTextStyles.light.bodyFootnote,
                   decoration: const InputDecoration(
-                    hintText: 'Усмонов Акбар',
-                      hintStyle: TextStyle(color: Color(0xff2B2A28)),
-                      fillColor: Color(0xffF5F5F5),
-                      labelStyle: TextStyle(fontSize: 10, color: Colors.black),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      )),
+                      ),
                   // controller: cpfcontroller,
                 ),
               ),
@@ -58,14 +64,10 @@ class EditProfilePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
+                  controller: phonecontroller,
                   style: ThemeTextStyles.light.bodyFootnote,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                      hintText: "+99893 564 92 29",
-                      labelStyle: TextStyle(fontSize: 10, color: Colors.black),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      )),
+                  decoration:  const InputDecoration(),
                   // controller: cpfcontroller,
                 ),
               ),
@@ -90,7 +92,7 @@ class EditProfilePage extends StatelessWidget {
                               text: "Дата рождения", mode: CupertinoDatePickerMode.date);
                         });
                   },
-                      child: const Icon(Icons.calendar_today_outlined),),
+                      child: const Icon(Icons.calendar_today_outlined, color: Color(0xff858585),),),
                       hintText: "11.09.1991",
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),

@@ -8,7 +8,5 @@ class ConfirmCodeState with _$ConfirmCodeState {
 
   const factory ConfirmCodeState.loading() = ConfirmCodeLaodingState;
 
-  const factory ConfirmCodeState.phone(String phone) = ConfirmCodePhoneState;
-
   const factory ConfirmCodeState.error() = ConfirmCodeErrorState;
 }

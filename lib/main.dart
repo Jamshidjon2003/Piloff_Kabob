@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:ploff_final/src/presentation/bloc/banner/home_bloc.dart';
 
 import 'src/app_options.dart';
 import 'src/config/router/app_routes.dart';
@@ -47,6 +48,7 @@ class MainApp extends StatelessWidget {
         textScaleFactor: systemTextScaleFactorOption,
         customTextDirection: CustomTextDirection.localeBased,
         locale: Locale(localSource.locale),
+        //locale: Locale(context.watch<AppProvider>().getLocale),
         timeDilation: timeDilation,
         platform: defaultTargetPlatform,
         isTestMode: true,
@@ -54,6 +56,7 @@ class MainApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
+        //  ChangeNotifierProvider(create: (_) => AppProvider()),
         ],
         child: KeyboardDismisser(
           child: Builder(
@@ -71,7 +74,8 @@ class MainApp extends StatelessWidget {
                 themeMode: options.themeMode,
 
                 /// lang
-                locale: options.locale,
+                 locale: options.locale,
+                //locale: Locale(context.watch<AppProvider>().getLocale),
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
 
@@ -95,5 +99,4 @@ class MyHttpOverrides extends HttpOverrides {
       ..badCertificateCallback = (cert, host, port) => true;
   }
 }
-
 /// flutter pub run build_runner watch --delete-conflicting-outputs

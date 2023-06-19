@@ -1,50 +1,76 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ploff_final/src/core/mixin/cache_mixin.dart';
-import 'package:ploff_final/src/data/models/auth/verify_request.dart';
-import 'package:ploff_final/src/domain/repositories/auth/auth_repository.dart';
+import 'package:ploff_final/src/data/models/auth/confirm_request.dart';
 
-part 'confirm_code_state.dart';
+import '../../../../core/mixin/cache_mixin.dart';
+import '../../../../domain/repositories/auth/auth_repository.dart';
+
+part 'confirm_code_bloc.freezed.dart';
 
 part 'confirm_code_event.dart';
 
-part 'confirm_code_bloc.freezed.dart';
+part 'confirm_code_state.dart';
 
 class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState>
     with CacheMixin {
   final AuthRepository authRepository;
 
   ConfirmCodeBloc(this.authRepository) : super(const ConfirmCodeState()) {
-    on<ConfirmCodeCheckMessageEvent>(_onConfirmCode);
+     on<ConfirmCodeButtonPressedEvent>(_onConfirmCode);
+     on<ConfirmCodeRegisterButtonPressedEvent>(_onConfirmCodeRegister);
+
   }
 
-  Future<void> _onConfirmCode(ConfirmCodeCheckMessageEvent event,
-      Emitter<ConfirmCodeState> emit) async {
+  Future<void> _onConfirmCode(
+      ConfirmCodeButtonPressedEvent event,
+      Emitter<ConfirmCodeState> emit,
+      ) async {
     emit(const ConfirmCodeState.loading());
-    final result = await authRepository.verifySmsCode(
-      request: VerifyRequest(
-        registerType: 'phone',
-        data: event.data,
-      ),
-      smsId: event.smsId,
-      otp: event.otp,
-    );
+    final result = await authRepository.confirmlogin(
+        request: ConfirmRequest(
+          code: event.code,
+          phone: event.phone,
+        ));
     result.fold(
-      (l) {
+          (l) {
         emit(const ConfirmCodeErrorState());
       },
-      (r) {
+          (r) {
         setUserInfo(
-          name: r.data?['user']['name'] ?? '',
-          id: r.data?['user_id'],
-          login: r.data?['user']['login'],
-          email: r.data?['user']['email'],
-          phoneNumber: r.data?['user']['phone'],
-          accessToken: r.data?['token']['access_token'],
-          refreshToken: r.data?['token']['refresh_token'],
-          imageUrl: '',
+          name: r.name??'',
+          id: r.id??'',
+          phoneNumber: r.phone??'',
+          accessToken: r.accessToken??'',
+          refreshToken: r.refreshToken??'',
         );
-        emit(const ConfirmCodeSuccessState());
+        emit( const ConfirmCodeSuccessState());
+      },
+    );
+  }
+
+  Future<void> _onConfirmCodeRegister(
+      ConfirmCodeRegisterButtonPressedEvent event,
+      Emitter<ConfirmCodeState> emit,
+      ) async {
+    emit(const ConfirmCodeState.loading());
+    final result = await authRepository.registerConfirm(
+        request: ConfirmRequest(
+          code: event.code,
+          phone: event.phone,
+        ));
+    result.fold(
+          (l) {
+        emit(const ConfirmCodeErrorState());
+      },
+          (r) {
+        setUserInfo(
+          name: r.name??'',
+          id: r.id??'',
+          phoneNumber: r.phone??'',
+          accessToken: r.accessToken??'',
+          refreshToken: r.refreshToken??'',
+        );
+        emit( const ConfirmCodeSuccessState());
       },
     );
   }

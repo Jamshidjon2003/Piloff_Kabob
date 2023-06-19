@@ -19,32 +19,31 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(
-            String smsId, String phone, Map<dynamic, dynamic> data)
-        success,
+    required TResult Function(String phone) success,
     required TResult Function() loading,
     required TResult Function(String phone) phone,
     required TResult Function() error,
+    required TResult Function(String phone) register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult? Function(String phone)? success,
     TResult? Function()? loading,
     TResult? Function(String phone)? phone,
     TResult? Function()? error,
+    TResult? Function(String phone)? register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult Function(String phone)? success,
     TResult Function()? loading,
     TResult Function(String phone)? phone,
     TResult Function()? error,
+    TResult Function(String phone)? register,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +54,7 @@ mixin _$AuthState {
     required TResult Function(AuthLaodingState value) loading,
     required TResult Function(AuthPhoneState value) phone,
     required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +64,7 @@ mixin _$AuthState {
     TResult? Function(AuthLaodingState value)? loading,
     TResult? Function(AuthPhoneState value)? phone,
     TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +74,7 @@ mixin _$AuthState {
     TResult Function(AuthLaodingState value)? loading,
     TResult Function(AuthPhoneState value)? phone,
     TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,12 +136,11 @@ class _$_AuthState implements _AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(
-            String smsId, String phone, Map<dynamic, dynamic> data)
-        success,
+    required TResult Function(String phone) success,
     required TResult Function() loading,
     required TResult Function(String phone) phone,
     required TResult Function() error,
+    required TResult Function(String phone) register,
   }) {
     return $default();
   }
@@ -148,11 +149,11 @@ class _$_AuthState implements _AuthState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult? Function(String phone)? success,
     TResult? Function()? loading,
     TResult? Function(String phone)? phone,
     TResult? Function()? error,
+    TResult? Function(String phone)? register,
   }) {
     return $default?.call();
   }
@@ -161,11 +162,11 @@ class _$_AuthState implements _AuthState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult Function(String phone)? success,
     TResult Function()? loading,
     TResult Function(String phone)? phone,
     TResult Function()? error,
+    TResult Function(String phone)? register,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -182,6 +183,7 @@ class _$_AuthState implements _AuthState {
     required TResult Function(AuthLaodingState value) loading,
     required TResult Function(AuthPhoneState value) phone,
     required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
   }) {
     return $default(this);
   }
@@ -194,6 +196,7 @@ class _$_AuthState implements _AuthState {
     TResult? Function(AuthLaodingState value)? loading,
     TResult? Function(AuthPhoneState value)? phone,
     TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
   }) {
     return $default?.call(this);
   }
@@ -206,6 +209,7 @@ class _$_AuthState implements _AuthState {
     TResult Function(AuthLaodingState value)? loading,
     TResult Function(AuthPhoneState value)? phone,
     TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -225,7 +229,7 @@ abstract class _$$AuthSuccessStateCopyWith<$Res> {
           _$AuthSuccessState value, $Res Function(_$AuthSuccessState) then) =
       __$$AuthSuccessStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({String smsId, String phone, Map<dynamic, dynamic> data});
+  $Res call({String phone});
 }
 
 /// @nodoc
@@ -239,23 +243,13 @@ class __$$AuthSuccessStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? smsId = null,
     Object? phone = null,
-    Object? data = null,
   }) {
     return _then(_$AuthSuccessState(
-      null == smsId
-          ? _value.smsId
-          : smsId // ignore: cast_nullable_to_non_nullable
-              as String,
       null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<dynamic, dynamic>,
     ));
   }
 }
@@ -263,25 +257,14 @@ class __$$AuthSuccessStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthSuccessState implements AuthSuccessState {
-  const _$AuthSuccessState(
-      this.smsId, this.phone, final Map<dynamic, dynamic> data)
-      : _data = data;
+  const _$AuthSuccessState(this.phone);
 
   @override
-  final String smsId;
-  @override
   final String phone;
-  final Map<dynamic, dynamic> _data;
-  @override
-  Map<dynamic, dynamic> get data {
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_data);
-  }
 
   @override
   String toString() {
-    return 'AuthState.success(smsId: $smsId, phone: $phone, data: $data)';
+    return 'AuthState.success(phone: $phone)';
   }
 
   @override
@@ -289,14 +272,11 @@ class _$AuthSuccessState implements AuthSuccessState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthSuccessState &&
-            (identical(other.smsId, smsId) || other.smsId == smsId) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, smsId, phone, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -308,42 +288,41 @@ class _$AuthSuccessState implements AuthSuccessState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(
-            String smsId, String phone, Map<dynamic, dynamic> data)
-        success,
+    required TResult Function(String phone) success,
     required TResult Function() loading,
     required TResult Function(String phone) phone,
     required TResult Function() error,
+    required TResult Function(String phone) register,
   }) {
-    return success(smsId, this.phone, data);
+    return success(this.phone);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult? Function(String phone)? success,
     TResult? Function()? loading,
     TResult? Function(String phone)? phone,
     TResult? Function()? error,
+    TResult? Function(String phone)? register,
   }) {
-    return success?.call(smsId, this.phone, data);
+    return success?.call(this.phone);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult Function(String phone)? success,
     TResult Function()? loading,
     TResult Function(String phone)? phone,
     TResult Function()? error,
+    TResult Function(String phone)? register,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(smsId, this.phone, data);
+      return success(this.phone);
     }
     return orElse();
   }
@@ -356,6 +335,7 @@ class _$AuthSuccessState implements AuthSuccessState {
     required TResult Function(AuthLaodingState value) loading,
     required TResult Function(AuthPhoneState value) phone,
     required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
   }) {
     return success(this);
   }
@@ -368,6 +348,7 @@ class _$AuthSuccessState implements AuthSuccessState {
     TResult? Function(AuthLaodingState value)? loading,
     TResult? Function(AuthPhoneState value)? phone,
     TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
   }) {
     return success?.call(this);
   }
@@ -380,6 +361,7 @@ class _$AuthSuccessState implements AuthSuccessState {
     TResult Function(AuthLaodingState value)? loading,
     TResult Function(AuthPhoneState value)? phone,
     TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -390,12 +372,9 @@ class _$AuthSuccessState implements AuthSuccessState {
 }
 
 abstract class AuthSuccessState implements AuthState {
-  const factory AuthSuccessState(final String smsId, final String phone,
-      final Map<dynamic, dynamic> data) = _$AuthSuccessState;
+  const factory AuthSuccessState(final String phone) = _$AuthSuccessState;
 
-  String get smsId;
   String get phone;
-  Map<dynamic, dynamic> get data;
   @JsonKey(ignore: true)
   _$$AuthSuccessStateCopyWith<_$AuthSuccessState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -440,12 +419,11 @@ class _$AuthLaodingState implements AuthLaodingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(
-            String smsId, String phone, Map<dynamic, dynamic> data)
-        success,
+    required TResult Function(String phone) success,
     required TResult Function() loading,
     required TResult Function(String phone) phone,
     required TResult Function() error,
+    required TResult Function(String phone) register,
   }) {
     return loading();
   }
@@ -454,11 +432,11 @@ class _$AuthLaodingState implements AuthLaodingState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult? Function(String phone)? success,
     TResult? Function()? loading,
     TResult? Function(String phone)? phone,
     TResult? Function()? error,
+    TResult? Function(String phone)? register,
   }) {
     return loading?.call();
   }
@@ -467,11 +445,11 @@ class _$AuthLaodingState implements AuthLaodingState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult Function(String phone)? success,
     TResult Function()? loading,
     TResult Function(String phone)? phone,
     TResult Function()? error,
+    TResult Function(String phone)? register,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -488,6 +466,7 @@ class _$AuthLaodingState implements AuthLaodingState {
     required TResult Function(AuthLaodingState value) loading,
     required TResult Function(AuthPhoneState value) phone,
     required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
   }) {
     return loading(this);
   }
@@ -500,6 +479,7 @@ class _$AuthLaodingState implements AuthLaodingState {
     TResult? Function(AuthLaodingState value)? loading,
     TResult? Function(AuthPhoneState value)? phone,
     TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
   }) {
     return loading?.call(this);
   }
@@ -512,6 +492,7 @@ class _$AuthLaodingState implements AuthLaodingState {
     TResult Function(AuthLaodingState value)? loading,
     TResult Function(AuthPhoneState value)? phone,
     TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -590,12 +571,11 @@ class _$AuthPhoneState implements AuthPhoneState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(
-            String smsId, String phone, Map<dynamic, dynamic> data)
-        success,
+    required TResult Function(String phone) success,
     required TResult Function() loading,
     required TResult Function(String phone) phone,
     required TResult Function() error,
+    required TResult Function(String phone) register,
   }) {
     return phone(this.phone);
   }
@@ -604,11 +584,11 @@ class _$AuthPhoneState implements AuthPhoneState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult? Function(String phone)? success,
     TResult? Function()? loading,
     TResult? Function(String phone)? phone,
     TResult? Function()? error,
+    TResult? Function(String phone)? register,
   }) {
     return phone?.call(this.phone);
   }
@@ -617,11 +597,11 @@ class _$AuthPhoneState implements AuthPhoneState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult Function(String phone)? success,
     TResult Function()? loading,
     TResult Function(String phone)? phone,
     TResult Function()? error,
+    TResult Function(String phone)? register,
     required TResult orElse(),
   }) {
     if (phone != null) {
@@ -638,6 +618,7 @@ class _$AuthPhoneState implements AuthPhoneState {
     required TResult Function(AuthLaodingState value) loading,
     required TResult Function(AuthPhoneState value) phone,
     required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
   }) {
     return phone(this);
   }
@@ -650,6 +631,7 @@ class _$AuthPhoneState implements AuthPhoneState {
     TResult? Function(AuthLaodingState value)? loading,
     TResult? Function(AuthPhoneState value)? phone,
     TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
   }) {
     return phone?.call(this);
   }
@@ -662,6 +644,7 @@ class _$AuthPhoneState implements AuthPhoneState {
     TResult Function(AuthLaodingState value)? loading,
     TResult Function(AuthPhoneState value)? phone,
     TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
     required TResult orElse(),
   }) {
     if (phone != null) {
@@ -719,12 +702,11 @@ class _$AuthErrorState implements AuthErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(
-            String smsId, String phone, Map<dynamic, dynamic> data)
-        success,
+    required TResult Function(String phone) success,
     required TResult Function() loading,
     required TResult Function(String phone) phone,
     required TResult Function() error,
+    required TResult Function(String phone) register,
   }) {
     return error();
   }
@@ -733,11 +715,11 @@ class _$AuthErrorState implements AuthErrorState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult? Function(String phone)? success,
     TResult? Function()? loading,
     TResult? Function(String phone)? phone,
     TResult? Function()? error,
+    TResult? Function(String phone)? register,
   }) {
     return error?.call();
   }
@@ -746,11 +728,11 @@ class _$AuthErrorState implements AuthErrorState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(String smsId, String phone, Map<dynamic, dynamic> data)?
-        success,
+    TResult Function(String phone)? success,
     TResult Function()? loading,
     TResult Function(String phone)? phone,
     TResult Function()? error,
+    TResult Function(String phone)? register,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -767,6 +749,7 @@ class _$AuthErrorState implements AuthErrorState {
     required TResult Function(AuthLaodingState value) loading,
     required TResult Function(AuthPhoneState value) phone,
     required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
   }) {
     return error(this);
   }
@@ -779,6 +762,7 @@ class _$AuthErrorState implements AuthErrorState {
     TResult? Function(AuthLaodingState value)? loading,
     TResult? Function(AuthPhoneState value)? phone,
     TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
   }) {
     return error?.call(this);
   }
@@ -791,6 +775,7 @@ class _$AuthErrorState implements AuthErrorState {
     TResult Function(AuthLaodingState value)? loading,
     TResult Function(AuthPhoneState value)? phone,
     TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -805,26 +790,183 @@ abstract class AuthErrorState implements AuthState {
 }
 
 /// @nodoc
+abstract class _$$AuthRegisterStateCopyWith<$Res> {
+  factory _$$AuthRegisterStateCopyWith(
+          _$AuthRegisterState value, $Res Function(_$AuthRegisterState) then) =
+      __$$AuthRegisterStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String phone});
+}
+
+/// @nodoc
+class __$$AuthRegisterStateCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthRegisterState>
+    implements _$$AuthRegisterStateCopyWith<$Res> {
+  __$$AuthRegisterStateCopyWithImpl(
+      _$AuthRegisterState _value, $Res Function(_$AuthRegisterState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phone = null,
+  }) {
+    return _then(_$AuthRegisterState(
+      null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthRegisterState implements AuthRegisterState {
+  const _$AuthRegisterState(this.phone);
+
+  @override
+  final String phone;
+
+  @override
+  String toString() {
+    return 'AuthState.register(phone: $phone)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthRegisterState &&
+            (identical(other.phone, phone) || other.phone == phone));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, phone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthRegisterStateCopyWith<_$AuthRegisterState> get copyWith =>
+      __$$AuthRegisterStateCopyWithImpl<_$AuthRegisterState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(String phone) success,
+    required TResult Function() loading,
+    required TResult Function(String phone) phone,
+    required TResult Function() error,
+    required TResult Function(String phone) register,
+  }) {
+    return register(this.phone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(String phone)? success,
+    TResult? Function()? loading,
+    TResult? Function(String phone)? phone,
+    TResult? Function()? error,
+    TResult? Function(String phone)? register,
+  }) {
+    return register?.call(this.phone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(String phone)? success,
+    TResult Function()? loading,
+    TResult Function(String phone)? phone,
+    TResult Function()? error,
+    TResult Function(String phone)? register,
+    required TResult orElse(),
+  }) {
+    if (register != null) {
+      return register(this.phone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AuthState value) $default, {
+    required TResult Function(AuthSuccessState value) success,
+    required TResult Function(AuthLaodingState value) loading,
+    required TResult Function(AuthPhoneState value) phone,
+    required TResult Function(AuthErrorState value) error,
+    required TResult Function(AuthRegisterState value) register,
+  }) {
+    return register(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AuthState value)? $default, {
+    TResult? Function(AuthSuccessState value)? success,
+    TResult? Function(AuthLaodingState value)? loading,
+    TResult? Function(AuthPhoneState value)? phone,
+    TResult? Function(AuthErrorState value)? error,
+    TResult? Function(AuthRegisterState value)? register,
+  }) {
+    return register?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AuthState value)? $default, {
+    TResult Function(AuthSuccessState value)? success,
+    TResult Function(AuthLaodingState value)? loading,
+    TResult Function(AuthPhoneState value)? phone,
+    TResult Function(AuthErrorState value)? error,
+    TResult Function(AuthRegisterState value)? register,
+    required TResult orElse(),
+  }) {
+    if (register != null) {
+      return register(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthRegisterState implements AuthState {
+  const factory AuthRegisterState(final String phone) = _$AuthRegisterState;
+
+  String get phone;
+  @JsonKey(ignore: true)
+  _$$AuthRegisterStateCopyWith<_$AuthRegisterState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String value) phoneChanged,
-    required TResult Function(String phone) checkMessage,
+    required TResult Function(String phone) buttoPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String value)? phoneChanged,
-    TResult? Function(String phone)? checkMessage,
+    TResult? Function(String phone)? buttoPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String value)? phoneChanged,
-    TResult Function(String phone)? checkMessage,
+    TResult Function(String phone)? buttoPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -832,21 +974,21 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventInitial value) initial,
     required TResult Function(AuthPhoneChangeEvent value) phoneChanged,
-    required TResult Function(AuthCheckMessageEvent value) checkMessage,
+    required TResult Function(PhoneNumberButtonPressedEvent value) buttoPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthEventInitial value)? initial,
     TResult? Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult? Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult? Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventInitial value)? initial,
     TResult Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -909,7 +1051,7 @@ class _$AuthEventInitial implements AuthEventInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String value) phoneChanged,
-    required TResult Function(String phone) checkMessage,
+    required TResult Function(String phone) buttoPressed,
   }) {
     return initial();
   }
@@ -919,7 +1061,7 @@ class _$AuthEventInitial implements AuthEventInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String value)? phoneChanged,
-    TResult? Function(String phone)? checkMessage,
+    TResult? Function(String phone)? buttoPressed,
   }) {
     return initial?.call();
   }
@@ -929,7 +1071,7 @@ class _$AuthEventInitial implements AuthEventInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String value)? phoneChanged,
-    TResult Function(String phone)? checkMessage,
+    TResult Function(String phone)? buttoPressed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -943,7 +1085,7 @@ class _$AuthEventInitial implements AuthEventInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventInitial value) initial,
     required TResult Function(AuthPhoneChangeEvent value) phoneChanged,
-    required TResult Function(AuthCheckMessageEvent value) checkMessage,
+    required TResult Function(PhoneNumberButtonPressedEvent value) buttoPressed,
   }) {
     return initial(this);
   }
@@ -953,7 +1095,7 @@ class _$AuthEventInitial implements AuthEventInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthEventInitial value)? initial,
     TResult? Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult? Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult? Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
   }) {
     return initial?.call(this);
   }
@@ -963,7 +1105,7 @@ class _$AuthEventInitial implements AuthEventInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventInitial value)? initial,
     TResult Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1044,7 +1186,7 @@ class _$AuthPhoneChangeEvent implements AuthPhoneChangeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String value) phoneChanged,
-    required TResult Function(String phone) checkMessage,
+    required TResult Function(String phone) buttoPressed,
   }) {
     return phoneChanged(value);
   }
@@ -1054,7 +1196,7 @@ class _$AuthPhoneChangeEvent implements AuthPhoneChangeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String value)? phoneChanged,
-    TResult? Function(String phone)? checkMessage,
+    TResult? Function(String phone)? buttoPressed,
   }) {
     return phoneChanged?.call(value);
   }
@@ -1064,7 +1206,7 @@ class _$AuthPhoneChangeEvent implements AuthPhoneChangeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String value)? phoneChanged,
-    TResult Function(String phone)? checkMessage,
+    TResult Function(String phone)? buttoPressed,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1078,7 +1220,7 @@ class _$AuthPhoneChangeEvent implements AuthPhoneChangeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventInitial value) initial,
     required TResult Function(AuthPhoneChangeEvent value) phoneChanged,
-    required TResult Function(AuthCheckMessageEvent value) checkMessage,
+    required TResult Function(PhoneNumberButtonPressedEvent value) buttoPressed,
   }) {
     return phoneChanged(this);
   }
@@ -1088,7 +1230,7 @@ class _$AuthPhoneChangeEvent implements AuthPhoneChangeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthEventInitial value)? initial,
     TResult? Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult? Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult? Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
   }) {
     return phoneChanged?.call(this);
   }
@@ -1098,7 +1240,7 @@ class _$AuthPhoneChangeEvent implements AuthPhoneChangeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventInitial value)? initial,
     TResult Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1119,20 +1261,22 @@ abstract class AuthPhoneChangeEvent implements AuthEvent {
 }
 
 /// @nodoc
-abstract class _$$AuthCheckMessageEventCopyWith<$Res> {
-  factory _$$AuthCheckMessageEventCopyWith(_$AuthCheckMessageEvent value,
-          $Res Function(_$AuthCheckMessageEvent) then) =
-      __$$AuthCheckMessageEventCopyWithImpl<$Res>;
+abstract class _$$PhoneNumberButtonPressedEventCopyWith<$Res> {
+  factory _$$PhoneNumberButtonPressedEventCopyWith(
+          _$PhoneNumberButtonPressedEvent value,
+          $Res Function(_$PhoneNumberButtonPressedEvent) then) =
+      __$$PhoneNumberButtonPressedEventCopyWithImpl<$Res>;
   @useResult
   $Res call({String phone});
 }
 
 /// @nodoc
-class __$$AuthCheckMessageEventCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AuthCheckMessageEvent>
-    implements _$$AuthCheckMessageEventCopyWith<$Res> {
-  __$$AuthCheckMessageEventCopyWithImpl(_$AuthCheckMessageEvent _value,
-      $Res Function(_$AuthCheckMessageEvent) _then)
+class __$$PhoneNumberButtonPressedEventCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$PhoneNumberButtonPressedEvent>
+    implements _$$PhoneNumberButtonPressedEventCopyWith<$Res> {
+  __$$PhoneNumberButtonPressedEventCopyWithImpl(
+      _$PhoneNumberButtonPressedEvent _value,
+      $Res Function(_$PhoneNumberButtonPressedEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1140,7 +1284,7 @@ class __$$AuthCheckMessageEventCopyWithImpl<$Res>
   $Res call({
     Object? phone = null,
   }) {
-    return _then(_$AuthCheckMessageEvent(
+    return _then(_$PhoneNumberButtonPressedEvent(
       null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -1151,22 +1295,22 @@ class __$$AuthCheckMessageEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
-  const _$AuthCheckMessageEvent(this.phone);
+class _$PhoneNumberButtonPressedEvent implements PhoneNumberButtonPressedEvent {
+  const _$PhoneNumberButtonPressedEvent(this.phone);
 
   @override
   final String phone;
 
   @override
   String toString() {
-    return 'AuthEvent.checkMessage(phone: $phone)';
+    return 'AuthEvent.buttoPressed(phone: $phone)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthCheckMessageEvent &&
+            other is _$PhoneNumberButtonPressedEvent &&
             (identical(other.phone, phone) || other.phone == phone));
   }
 
@@ -1176,18 +1320,18 @@ class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthCheckMessageEventCopyWith<_$AuthCheckMessageEvent> get copyWith =>
-      __$$AuthCheckMessageEventCopyWithImpl<_$AuthCheckMessageEvent>(
-          this, _$identity);
+  _$$PhoneNumberButtonPressedEventCopyWith<_$PhoneNumberButtonPressedEvent>
+      get copyWith => __$$PhoneNumberButtonPressedEventCopyWithImpl<
+          _$PhoneNumberButtonPressedEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String value) phoneChanged,
-    required TResult Function(String phone) checkMessage,
+    required TResult Function(String phone) buttoPressed,
   }) {
-    return checkMessage(phone);
+    return buttoPressed(phone);
   }
 
   @override
@@ -1195,9 +1339,9 @@ class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(String value)? phoneChanged,
-    TResult? Function(String phone)? checkMessage,
+    TResult? Function(String phone)? buttoPressed,
   }) {
-    return checkMessage?.call(phone);
+    return buttoPressed?.call(phone);
   }
 
   @override
@@ -1205,11 +1349,11 @@ class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String value)? phoneChanged,
-    TResult Function(String phone)? checkMessage,
+    TResult Function(String phone)? buttoPressed,
     required TResult orElse(),
   }) {
-    if (checkMessage != null) {
-      return checkMessage(phone);
+    if (buttoPressed != null) {
+      return buttoPressed(phone);
     }
     return orElse();
   }
@@ -1219,9 +1363,9 @@ class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthEventInitial value) initial,
     required TResult Function(AuthPhoneChangeEvent value) phoneChanged,
-    required TResult Function(AuthCheckMessageEvent value) checkMessage,
+    required TResult Function(PhoneNumberButtonPressedEvent value) buttoPressed,
   }) {
-    return checkMessage(this);
+    return buttoPressed(this);
   }
 
   @override
@@ -1229,9 +1373,9 @@ class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthEventInitial value)? initial,
     TResult? Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult? Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult? Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
   }) {
-    return checkMessage?.call(this);
+    return buttoPressed?.call(this);
   }
 
   @override
@@ -1239,22 +1383,22 @@ class _$AuthCheckMessageEvent implements AuthCheckMessageEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthEventInitial value)? initial,
     TResult Function(AuthPhoneChangeEvent value)? phoneChanged,
-    TResult Function(AuthCheckMessageEvent value)? checkMessage,
+    TResult Function(PhoneNumberButtonPressedEvent value)? buttoPressed,
     required TResult orElse(),
   }) {
-    if (checkMessage != null) {
-      return checkMessage(this);
+    if (buttoPressed != null) {
+      return buttoPressed(this);
     }
     return orElse();
   }
 }
 
-abstract class AuthCheckMessageEvent implements AuthEvent {
-  const factory AuthCheckMessageEvent(final String phone) =
-      _$AuthCheckMessageEvent;
+abstract class PhoneNumberButtonPressedEvent implements AuthEvent {
+  const factory PhoneNumberButtonPressedEvent(final String phone) =
+      _$PhoneNumberButtonPressedEvent;
 
   String get phone;
   @JsonKey(ignore: true)
-  _$$AuthCheckMessageEventCopyWith<_$AuthCheckMessageEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PhoneNumberButtonPressedEventCopyWith<_$PhoneNumberButtonPressedEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }

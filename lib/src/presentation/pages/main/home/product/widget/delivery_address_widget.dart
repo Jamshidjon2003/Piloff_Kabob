@@ -103,7 +103,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
           ),
           const Spacer(),
           Padding(
-            padding: const EdgeInsets.all(13),
+            padding: const EdgeInsets.all(15),
             child: ElevatedButton(
               onPressed: () {},
               child: const Text("Подтвердить"),

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
-import 'package:ploff_final/src/core/l10n/app_localizations.dart';
 import 'package:ploff_final/src/presentation/pages/main/profile/settings/widget/language_widget.dart';
+import 'package:ploff_final/src/presentation/pages/splash/language_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
               showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const LanguagesWidget();
+                    return  const LanguagesWidget();
                   });
             },
             child: Padding(
@@ -55,7 +55,7 @@ class _SettingsPageState extends State<SettingsPage> {
                          Padding(
                           padding: const EdgeInsets.only(top: 16, bottom: 16),
                           child: Text(
-                          'Язык',
+                            "Язык",
                             style: ThemeTextStyles.light.bodySubheadline,
                           ),
                         ),

@@ -7,6 +7,7 @@ import 'package:ploff_final/src/core/extension/extension.dart';
 import 'package:ploff_final/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:ploff_final/src/presentation/components/custom_texfield/masked_text_input_formatter.dart';
 import 'package:ploff_final/src/presentation/components/loading_widgets/modal_progress_hud.dart';
+import 'package:ploff_final/src/presentation/pages/auth/arguments/auth_arguments.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -31,7 +32,15 @@ class _AuthPageState extends State<AuthPage> {
         if (state is AuthSuccessState) {
           Navigator.of(context).pushNamed(
             Routes.confirmCode,
-            arguments: state,
+            arguments: AuthArguments(
+              phone: state.phone,
+              isRegister: false,
+            ),
+          );
+        } else if (state is AuthRegisterState) {
+          Navigator.of(context).pushNamed(
+            Routes.register,
+            arguments: state.phone,
           );
         }
       },
@@ -114,9 +123,8 @@ class _AuthPageState extends State<AuthPage> {
               return ElevatedButton(
                 onPressed: state is AuthPhoneState
                     ? () {
-                        context
-                            .read<AuthBloc>()
-                            .add(AuthCheckMessageEvent(controller.text));
+                        context.read<AuthBloc>().add(
+                            PhoneNumberButtonPressedEvent(controller.text));
                       }
                     : null,
                 child: const Text('Verify phone number'),

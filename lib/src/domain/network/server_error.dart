@@ -21,7 +21,7 @@ final class ServerError implements Exception {
   String get message => _errorMessage;
 
   void _handleError(DioError error) {
-    _errorCode = error.response?.statusCode ?? 500;
+    _errorCode = error.response?.statusCode ?? 500;//404
     if (_errorCode == 500) {
       _errorMessage = 'Server error';
       return;

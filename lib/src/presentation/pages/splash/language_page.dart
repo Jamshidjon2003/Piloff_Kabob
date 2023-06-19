@@ -35,13 +35,13 @@ class LanguagePage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12),
               child: Text(
                 textAlign: TextAlign.start,
-                context.translate('language'),
+                context.translate("language"),
                 style: ThemeTextStyles.light.appBarTitle,
               ),
             ),
             LanguageItemWidget(
               isChecked: options.locale.languageCode == 'ru',
-              text: AppLocalizations.of(context).translate('Russian'),
+              text: AppLocalizations.of(context).translate("Russian"),
               flagName: 'ru',
               onTap: () {
                 AppOptions.update(
@@ -52,7 +52,7 @@ class LanguagePage extends StatelessWidget {
             const Divider(),
             LanguageItemWidget(
               isChecked: options.locale.languageCode == 'en',
-              text: AppLocalizations.of(context).translate('English'),
+              text: AppLocalizations.of(context).translate("English"),
               flagName: 'en',
               onTap: () {
                 AppOptions.update(

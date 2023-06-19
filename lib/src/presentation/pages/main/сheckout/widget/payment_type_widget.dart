@@ -40,7 +40,7 @@ class _PaymentTypeWidgetState extends State<PaymentTypeWidget> {
               title:  Text('Наличные', style: ThemeTextStyles.light.bodyCallout),
               trailing: Radio(
                 activeColor: ThemeColors.light.primary,
-                value: 'Да',
+                value: 'Наличные',
                 groupValue: gender1,
                 onChanged: (value) {
                   setState(() {
@@ -54,7 +54,7 @@ class _PaymentTypeWidgetState extends State<PaymentTypeWidget> {
               title:  Text('Payme', style: ThemeTextStyles.light.bodyCallout),
               trailing: Radio(
                 activeColor: ThemeColors.light.primary,
-                value: 'Нет',
+                value: 'Payme',
                 groupValue: gender1,
                 onChanged: (value) {
                   setState(() {
@@ -68,7 +68,7 @@ class _PaymentTypeWidgetState extends State<PaymentTypeWidget> {
               title:  Text('Cilic', style: ThemeTextStyles.light.bodyCallout),
               trailing: Radio(
                 activeColor: ThemeColors.light.primary,
-                value: 'Да',
+                value: 'Cilic',
                 groupValue: gender1,
                 onChanged: (value) {
                   setState(() {

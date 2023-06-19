@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
+import 'package:ploff_final/src/config/themes/themes.dart';
 import 'package:ploff_final/src/presentation/pages/main/home/product/widget/counter_widget.dart';
 
 class AdditivesToWidget extends StatefulWidget {
@@ -11,6 +12,7 @@ class AdditivesToWidget extends StatefulWidget {
 
 class AdditivesWidgetState extends State<AdditivesToWidget> {
   String? gender1;
+  String? gender2;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,6 @@ class GroupWidget extends StatefulWidget {
 class _GroupWidgetState extends State<GroupWidget> {
   String? gender1;
   String? gender2;
-  String? gender3;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +150,7 @@ class _GroupWidgetState extends State<GroupWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children:  [
                   Text(
-                    "Пакет ",
+                    "Пакет",
                     style: ThemeTextStyles.light.features,
                   ),
                   Text(
@@ -158,7 +159,7 @@ class _GroupWidgetState extends State<GroupWidget> {
                   ),
                 ],
               ),
-              value: "Томат",
+              value: "Пакет",
               groupValue: gender2,
               onChanged: (value) {
                 setState(() {
@@ -177,7 +178,7 @@ class _GroupWidgetState extends State<GroupWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children:  [
                   Text(
-                    "Томат",
+                    "Чой",
                     style: ThemeTextStyles.light.features,
                   ),
                   Text(
@@ -186,35 +187,11 @@ class _GroupWidgetState extends State<GroupWidget> {
                   ),
                 ],
               ),
-              value: "Томат",
+              value: "Чой",
               groupValue: gender2,
               onChanged: (value) {
                 setState(() {
                   gender2 = value.toString();
-                });
-              },
-            ),
-            RadioListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              activeColor: ThemeColors.light.primary,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:  [
-                  Text(
-                    "Томат",
-                    style: ThemeTextStyles.light.features,
-                  ),
-                  Text(
-                    "+500 sum",
-                    style: ThemeTextStyles.light.regularSubheadline,
-                  ),
-                ],
-              ),
-              value: "Томат",
-              groupValue: gender3,
-              onChanged: (value) {
-                setState(() {
-                  gender3 = value.toString();
                 });
               },
             ),
@@ -234,11 +211,11 @@ class _GroupWidgetState extends State<GroupWidget> {
                   ),
                 ],
               ),
-              value: "Томат",
-              groupValue: gender3,
+              value: "Лука",
+              groupValue: gender2,
               onChanged: (value) {
                 setState(() {
-                  gender3 = value.toString();
+                  gender2 = value.toString();
                 });
               },
             ),

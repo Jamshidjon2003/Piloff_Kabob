@@ -22,4 +22,5 @@ final class Routes {
   static const String about_service = '/about_service';
   static const String yunusobod_filial = '/yunusobod_filial';
   static const String adress = '/adress';
+  static const String register = '/register';
 }

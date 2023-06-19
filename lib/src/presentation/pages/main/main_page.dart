@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ploff_final/src/config/router/app_routes.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
-import 'package:ploff_final/src/core/extension/extension.dart';
 import 'package:ploff_final/src/core/constants/constants.dart';
+import 'package:ploff_final/src/core/extension/extension.dart';
+import 'package:ploff_final/src/injector_container.dart';
+import 'package:ploff_final/src/presentation/bloc/banner/home_bloc.dart';
 import 'package:ploff_final/src/presentation/bloc/main/main_bloc.dart';
 import 'package:ploff_final/src/presentation/pages/main/home/home_page.dart';
 import 'package:ploff_final/src/presentation/pages/main/my_orders/my_orders_page.dart';
@@ -23,19 +25,22 @@ class MainPage extends StatelessWidget {
         return Scaffold(
           body: IndexedStack(
             index: state.bottomMenu.index,
-            children: const [
-              HomePage(),
-              BasketPage(),
-              MyOrdersPage(),
-              ProfilePage()
+            children: [
+              BlocProvider<HomeBloc>(
+                create: (_) => sl<HomeBloc>(),
+                child: const HomePage(),
+              ),
+              const BasketPage(),
+              const MyOrdersPage(),
+              const ProfilePage()
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             key: Constants.bottomNavigatorKey,
             onTap: (i) {
               if (i == 3 && !localSource.hasProfile) {
-                // Navigator.pushNamed(context, Routes.auth);
-                 Navigator.pushNamed(context, Routes.profile);
+                Navigator.pushNamed(context, Routes.auth);
+                // Navigator.pushNamed(context, Routes.profile);
 
                 return;
               }

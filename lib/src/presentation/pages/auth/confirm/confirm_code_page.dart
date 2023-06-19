@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
+import 'package:ploff_final/src/config/router/app_routes.dart';
 import 'package:ploff_final/src/config/themes/themes.dart';
 import 'package:ploff_final/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:ploff_final/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
+import 'package:ploff_final/src/presentation/pages/auth/arguments/auth_arguments.dart';
 
 class ConfirmCodePage extends StatefulWidget {
-  final AuthSuccessState state;
+  final AuthArguments arg;
 
   const ConfirmCodePage({
     Key? key,
-    required this.state,
+    required this.arg,
   }) : super(key: key);
 
   @override
@@ -59,10 +61,8 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
     return BlocListener<ConfirmCodeBloc, ConfirmCodeState>(
       listener: (_, state) {
         if (state is ConfirmCodeSuccessState) {
-          Navigator.popUntil(
-            context,
-            (route) => route.isFirst,
-          );
+          Navigator.pushNamedAndRemoveUntil(
+              context, Routes.main, ModalRoute.withName('/main'));
         }
       },
       child: Scaffold(
@@ -77,13 +77,21 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
             submittedPinTheme: submittedPinTheme,
             onCompleted: (pin) {
               if (pin.length == 6) {
-                context.read<ConfirmCodeBloc>().add(
-                      ConfirmCodeCheckMessageEvent(
-                        smsId: widget.state.smsId,
-                        otp: pin,
-                        data: widget.state.data,
-                      ),
-                    );
+                if (widget.arg.isRegister) {
+                  context.read<ConfirmCodeBloc>().add(
+                    ConfirmCodeRegisterButtonPressedEvent(
+                      code: controller.text.trim(),
+                      phone: widget.arg.phone,
+                    ),
+                  );
+                } else {
+                  context.read<ConfirmCodeBloc>().add(
+                    ConfirmCodeButtonPressedEvent(
+                      code: controller.text.trim(),
+                      phone: widget.arg.phone,
+                    ),
+                  );
+                }
               }
             },
           ),
@@ -99,13 +107,21 @@ class _ConfirmCodePageState extends State<ConfirmCodePage> {
               return ElevatedButton(
                 onPressed: state is AuthPhoneState
                     ? () {
-                        context.read<ConfirmCodeBloc>().add(
-                              ConfirmCodeCheckMessageEvent(
-                                smsId: widget.state.smsId,
-                                otp: controller.text,
-                                data: widget.state.data,
-                              ),
-                            );
+                        if (widget.arg.isRegister) {
+                          context.read<ConfirmCodeBloc>().add(
+                                ConfirmCodeRegisterButtonPressedEvent(
+                                  code: controller.text.trim(),
+                                  phone: widget.arg.phone,
+                                ),
+                              );
+                        } else {
+                          context.read<ConfirmCodeBloc>().add(
+                                ConfirmCodeButtonPressedEvent(
+                                  code: controller.text.trim(),
+                                  phone: widget.arg.phone,
+                                ),
+                              );
+                        }
                       }
                     : null,
                 child: const Text('Продолжить'),

@@ -20,13 +20,13 @@ class DiscountWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 16),
                   child: Text(
                     'Со скидкой', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),

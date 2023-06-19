@@ -9,11 +9,27 @@ class Constants {
 
   /// test
   static const shipperId = 'd4b1658f-3271-4973-8591-98a82939a664';
-  static const baseUrl = 'https://test.customer.api.delever.uz/';
+  static const platform = '6bd7c2e3-d35e-47df-93ce-ed54ed53f95f';
+  static const baseUrl = 'https://test.customer.api.delever.uz';
   static const authUrl = 'https://api.auth.u-code.io/';
 
   static GlobalKey<FormState> bottomNavigatorKey = GlobalKey<FormState>();
 }
+class Urls {
+  static const GET_CUSTOMERS = '/v1/customers';
+  static const GET_BANNERS = '/v1/banner';
+
+}
+
+class DatabaseKeys {
+  static const phone = '/phone';
+  static const login = '/login';
+  static const confirmLogin = '/confirm-login';
+  static const register = '/register';
+  static const registerconfirm = '/register-confirm';
+
+}
+
 
 // height of the 'Gallery' header
 const double galleryHeaderHeight = 64;
