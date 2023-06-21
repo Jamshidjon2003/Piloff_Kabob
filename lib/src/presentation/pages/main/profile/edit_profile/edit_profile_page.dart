@@ -7,7 +7,7 @@ import 'package:ploff_final/src/injector_container.dart';
 import 'widget/data_widget.dart';
 
 class EditProfilePage extends StatefulWidget {
-   const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -15,14 +15,15 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController namecontroller = TextEditingController();
-   final TextEditingController phonecontroller = TextEditingController();
+  final TextEditingController phonecontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    namecontroller.text=sl<LocalSource>().fullName;
-    phonecontroller.text =sl<LocalSource>().phone;
+    namecontroller.text = sl<LocalSource>().fullName;
+    phonecontroller.text = sl<LocalSource>().phone;
     return Scaffold(
-      appBar: AppBar( centerTitle: true,
+      appBar: AppBar(
+        centerTitle: true,
         title: const Text("Редактировать профиль"),
       ),
       body: Padding(
@@ -30,7 +31,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Container(
           height: 292,
           width: double.infinity,
-          decoration: const BoxDecoration( color: Colors.white,
+          decoration: const BoxDecoration(
+            color: Colors.white,
             borderRadius: BorderRadius.all(
               Radius.circular(12),
             ),
@@ -38,8 +40,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Padding(
-                padding: const EdgeInsets.only(left: 16, top: 16, bottom: 4 ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 16, bottom: 4),
                 child: Text(
                   "Имя",
                   style: ThemeTextStyles.light.bodySubheadline,
@@ -47,14 +49,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
-                child: TextFormField( controller: namecontroller,
+                child: TextFormField(
+                  controller: namecontroller,
                   style: ThemeTextStyles.light.bodyFootnote,
-                  decoration: const InputDecoration(
-                      ),
+                  decoration: const InputDecoration(),
                   // controller: cpfcontroller,
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(left: 16, top: 16, bottom: 4),
                 child: Text(
                   "Номер телефона",
@@ -67,11 +69,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   controller: phonecontroller,
                   style: ThemeTextStyles.light.bodyFootnote,
                   keyboardType: TextInputType.number,
-                  decoration:  const InputDecoration(),
+                  decoration: const InputDecoration(),
                   // controller: cpfcontroller,
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(left: 16, top: 16, bottom: 4),
                 child: Text(
                   "Ваш дата рождения",
@@ -83,20 +85,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 child: TextFormField(
                   style: ThemeTextStyles.light.bodyFootnote,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(suffixIcon: InkWell( onTap: (){
-                    showModalBottomSheet(
-                        backgroundColor: Colors.white,
-                        context: context,
-                        builder: (_) {
-                          return const DateWidget(
-                              text: "Дата рождения", mode: CupertinoDatePickerMode.date);
-                        });
-                  },
-                      child: const Icon(Icons.calendar_today_outlined, color: Color(0xff858585),),),
-                      hintText: "11.09.1991",
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),),
+                  decoration: InputDecoration(
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        showModalBottomSheet(
+                            backgroundColor: Colors.white,
+                            context: context,
+                            builder: (_) {
+                              return const DateWidget(
+                                  text: "Дата рождения",
+                                  mode: CupertinoDatePickerMode.date);
+                            });
+                      },
+                      child: const Icon(
+                        Icons.calendar_today_outlined,
+                        color: Color(0xff858585),
+                      ),
+                    ),
+                    hintText: "06.11.2003",
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
+                  ),
                   // controller: cpfcontroller,
                 ),
               ),
@@ -106,7 +116,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
       bottomSheet: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-        child: ElevatedButton(onPressed: (){},child: const Text("Сохранить"),),
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text("Сохранить"),
+        ),
       ),
     );
   }

@@ -6,22 +6,20 @@ import 'package:ploff_final/src/data/source/local_source.dart';
 import '../../../../injector_container.dart';
 
 class ProfilePage extends StatefulWidget {
-   const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title:  Text(
+        title: Text(
           'Профиль ',
           style: ThemeTextStyles.light.appBarTitle,
         ),
@@ -44,15 +42,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column( mainAxisAlignment: MainAxisAlignment.start,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 16, bottom: 8),
-                          child:
-                            Text(sl<LocalSource>().fullName),
-
+                          child: Text(sl<LocalSource>().fullName),
                         ),
-                         Text(sl<LocalSource>().phone,
+                        Text(
+                          sl<LocalSource>().phone,
                           style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
@@ -164,4 +162,3 @@ class ProfileItem extends StatelessWidget {
     );
   }
 }
-

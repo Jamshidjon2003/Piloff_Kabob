@@ -20,13 +20,13 @@ class DiscountWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 16),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: EdgeInsets.only(top: 15),
                   child: Text(
                     'Со скидкой', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
@@ -62,7 +62,6 @@ class ContainerWidget extends StatelessWidget {
       },
       child: SizedBox(
         width: double.infinity,
-        height: 125,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -90,7 +89,7 @@ class ContainerWidget extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Image.asset(
                     image,
                     width: 88,

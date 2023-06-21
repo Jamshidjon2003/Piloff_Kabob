@@ -73,7 +73,7 @@ class BasketPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(15),
         child: ElevatedButton(
           onPressed: () {
             Navigator.pushNamed(context, Routes.checkout);

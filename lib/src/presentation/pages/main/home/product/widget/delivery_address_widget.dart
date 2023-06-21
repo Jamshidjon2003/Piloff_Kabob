@@ -24,7 +24,7 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             child: Text(
               "Адрес доставки",
               style: ThemeTextStyles.light.appBarTitle,

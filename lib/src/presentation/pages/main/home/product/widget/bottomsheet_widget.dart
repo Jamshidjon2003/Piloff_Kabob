@@ -29,7 +29,7 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
            Padding(
-            padding: const EdgeInsets.only(left: 16, top: 16),
+            padding: const EdgeInsets.only(left: 16, top: 14),
             child: Text(
               "Мои адреса",
               style: ThemeTextStyles.light.appBarTitle,
